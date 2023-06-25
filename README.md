@@ -5,7 +5,7 @@
 Данная команда создаёт контейнеры на основании compose-файла в текущей директории.
 По адресу <code>http://localhost:8000/admin</code> доступна административная панель Django-проекта.
 Логин и пароль административной панели прописаны заранее. Логин: <code>admin</code>, пароль: <code>admin</code>.
-Ссылка на образ mpwsg/module_e4_homework-web в Docker Hub:
+Ссылка на образ <i>mpwsg/module_e4_homework-web</i> в Docker Hub:
 <a href="https://hub.docker.com/repository/docker/mpwsg/module_e4_homework-web/general">mpwsg/module_e4_homework-web</a>.
-Ссылка на образ mpwsg/module_e4_homework-nginx в Docker Hub:
+Ссылка на образ <i>mpwsg/module_e4_homework-nginx</i> в Docker Hub:
 <a href="https://hub.docker.com/repository/docker/mpwsg/module_e4_homework-nginx/general">mpwsg/module_e4_homework-nginx</a>.
