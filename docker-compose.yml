@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    image: mpwsg/module_e4_homework-web:latest
+    command: gunicorn module_e4_project.wsgi:application --bind 0.0.0.0:8001
+    volumes:
+      - static_volume:/home/module_e4_project/web/staticfiles
+    expose:
+      - 8001
+    environment:
+      - DEBUG=0
+      - SECRET_KEY=change_me
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=module_e4_homework_prod
+      - SQL_USER=module_e4_homework
+      - SQL_PASSWORD=module_e4_homework
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+  db:
+    image: postgres:15.3-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=module_e4_homework
+      - POSTGRES_PASSWORD=module_e4_homework
+      - POSTGRES_DB=module_e4_homework_prod
+  nginx:
+    image: mpwsg/module_e4_homework-nginx:latest
+    volumes:
+      - static_volume:/home/module_e4_project/web/staticfiles
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+volumes:
+  postgres_data:
+  static_volume:
